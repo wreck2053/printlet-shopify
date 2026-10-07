@@ -75,9 +75,20 @@
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
   <product-component view-event-payload="{{ product | standard_event_data: 'view', context: 'page' | escape }}">
     <div class="page-width">
+      {% if product.handle contains 'sticker-sheet' %}
+        <nav class="pl-breadcrumb" aria-label="Breadcrumb">
+          <a href="{{ routes.root_url }}">Home</a><span aria-hidden="true">/</span>
+          <a href="/collections/all">Shop stickers</a><span aria-hidden="true">/</span>
+          <span aria-current="page">{% if product.handle contains 'vinyl' %}Waterproof vinyl{% else %}Paper{% endif %}</span>
+        </nav>
+      {% endif %}
       <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
         <div class="grid__item product__media-wrapper">
-          {% render 'product-media-gallery', variant_images: variant_images %}
+          {% if product.media.size == 0 and product.handle contains 'sticker-sheet' %}
+            {% render 'printlet-product-art', product: product %}
+          {% else %}
+            {% render 'product-media-gallery', variant_images: variant_images %}
+          {% endif %}
         </div>
         <div class="product__info-wrapper grid__item{% if settings.page_width > 1400 and section.settings.media_size == "small" %} product__info-wrapper--extra-padding{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
           <section
@@ -120,6 +131,7 @@
                       <span>{{ 'products.product.volume_pricing.note' | t }}</span>
                     </div>
                   {%- endif -%}
+                  {%- unless product.handle contains 'sticker-sheet' -%}
                   {%- if cart.taxes_included or cart.duties_included or shop.shipping_policy.body != blank -%}
                     <div class="product__tax caption rte">
                       {%- if cart.duties_included and cart.taxes_included -%}
@@ -134,6 +146,7 @@
                       {%- endif -%}
                     </div>
                   {%- endif -%}
+                  {%- endunless -%}
                   <div {{ block.shopify_attributes }}>
                     {%- assign product_form_installment_id = 'product-form-installment-' | append: section.id -%}
                     {%- form 'product', product, id: product_form_installment_id, class: 'installment caption-large' -%}
@@ -229,6 +242,7 @@
                     </details>
                   </div>
                 {%- when 'quantity_selector' -%}
+                  {% unless product.handle contains 'sticker-sheet' %}
                   <div
                     id="Quantity-Form-{{ section.id }}"
                     class="product-form__input product-form__quantity{% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_vertical_offset < 0 %} product-form__quantity-top{% endif %}"
@@ -455,6 +469,7 @@
                       </volume-pricing>
                     {%- endif -%}
                   </div>
+                  {% endunless %}
                 {%- when 'popup' -%}
                   <modal-opener
                     class="product-popup-modal__opener quick-add-hidden"
@@ -492,13 +507,17 @@
                     product_form_id: product_form_id
                   %}
                 {%- when 'buy_buttons' -%}
-                  {%- render 'buy-buttons',
-                    block: block,
-                    product: product,
-                    product_form_id: product_form_id,
-                    section_id: section.id,
-                    show_pickup_availability: true
-                  -%}
+                  {% if product.handle contains 'sticker-sheet' %}
+                    {% render 'printlet-buy-buttons', block: block, product: product, product_form_id: product_form_id %}
+                  {% else %}
+                    {%- render 'buy-buttons',
+                      block: block,
+                      product: product,
+                      product_form_id: product_form_id,
+                      section_id: section.id,
+                      show_pickup_availability: true
+                    -%}
+                  {% endif %}
                 {%- when 'rating' -%}
                   {%- if product.metafields.reviews.rating.value != blank -%}
                     <div class="rating-wrapper">

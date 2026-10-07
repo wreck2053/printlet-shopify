@@ -1,0 +1,36 @@
+{% if product.handle contains 'sticker-sheet' %}
+  {% assign is_vinyl = false %}
+  {% if product.handle contains 'vinyl' %}{% assign is_vinyl = true %}{% endif %}
+  <section class="pl-product-story" aria-labelledby="pl-story-title">
+    <div class="pl-story-intro">
+      <p class="pl-eyebrow">The details / no guesswork</p>
+      <h2 id="pl-story-title">One idea.<br>A whole sheet.</h2>
+      <p>Upload one design and choose how you want it cut. Your image is repeated across a full A4 sheet, then kiss-cut so each sticker can be peeled individually.</p>
+      <div class="pl-story-pills"><span>One A4 sheet</span><span>One design repeated</span><span>Printed in Chennai</span></div>
+    </div>
+    <div class="pl-story-specs">
+      <div><span class="pl-story-specs__number">01</span><h3>Choose your cut</h3><p>Circle or square: 25, 50, or 75 mm. Rectangle or oval: 50 × 25, 75 × 50, or 100 × 75 mm.</p></div>
+      <div><span class="pl-story-specs__number">02</span><h3>Pick your material</h3><p>{% if is_vinyl %}Vinyl with your choice of matte or glossy lamination. Waterproof performance is being checked with physical samples before sales open.{% else %}Paper for journals, packaging, party favors, and other dry-use projects.{% endif %}</p></div>
+      <div><span class="pl-story-specs__number">03</span><h3>Made for your image</h3><p>Send a clear original photo, drawing, or logo. We review the file before printing and contact you if it needs attention.</p></div>
+    </div>
+  </section>
+
+  <section class="pl-product-faq" aria-labelledby="pl-product-faq-title">
+    <div class="pl-product-faq__heading"><p class="pl-eyebrow">Good to know</p><h2 id="pl-product-faq-title">Before you<br>stick it.</h2></div>
+    <div class="pl-product-faq__list">
+      <details><summary>How many stickers are on one sheet?<span aria-hidden="true">+</span></summary><p>The number depends on your chosen size. The live count above is a planning estimate using a conservative layout. We’ll confirm it after physical print and cut tests, before opening orders.</p></details>
+      <details><summary>Can I upload from my phone?<span aria-hidden="true">+</span></summary><p>Yes. Choose a photo or file in the product form. We accept common image formats and PDF files up to 20 MB. One design is repeated across each sheet.</p></details>
+      <details><summary>What exactly will arrive?<span aria-hidden="true">+</span></summary><p>Each quantity is one A4 sheet of individually kiss-cut stickers. Mega Digital prints two separate A4 layouts on an A3 sheet; we divide it into A4 sheets for dispatch.</p></details>
+      <details><summary>When will it arrive?<span aria-hidden="true">+</span></summary><p>Plan for an estimated five days, depending on the courier service for your PIN code. Shipping is charged separately at checkout.</p></details>
+    </div>
+  </section>
+
+  <aside class="pl-other-material" aria-label="Other sticker material">
+    <div><p class="pl-eyebrow">Something else in mind?</p><h2>{% if is_vinyl %}Try the paper side.{% else %}Go beyond paper.{% endif %}</h2><p>{% if is_vinyl %}A bright, everyday sheet for journals, packaging, and dry-use projects.{% else %}Choose laminated vinyl in matte or glossy for your next project.{% endif %}</p></div>
+    <a href="{% if is_vinyl %}/products/custom-paper-sticker-sheet{% else %}/products/custom-waterproof-vinyl-sticker-sheet{% endif %}">{% if is_vinyl %}Explore paper stickers{% else %}Explore waterproof vinyl{% endif %}</a>
+  </aside>
+{% endif %}
+
+{% schema %}
+{"name":"Printlet product details","tag":"section","class":"section-printlet-product-story","settings":[],"presets":[{"name":"Printlet product details"}]}
+{% endschema %}

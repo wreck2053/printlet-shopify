@@ -1,99 +1,72 @@
-# Dawn
+# Printlet Shopify store
 
-[![Build status](https://github.com/shopify/dawn/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Shopify/dawn/actions/workflows/ci.yml?query=branch%3Amain)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?color=informational)](/.github/CONTRIBUTING.md)
+## Current state (7 October 2026)
 
-[Getting started](#getting-started) |
-[Staying up to date with Dawn changes](#staying-up-to-date-with-dawn-changes) |
-[Developer tools](#developer-tools) |
-[Contributing](#contributing) |
-[Code of conduct](#code-of-conduct) |
-[Theme Store submission](#theme-store-submission) |
-[License](#license)
+The merchant store is **Printlet** under Rahul's Shopify account, at `printlet-in.myshopify.com`. It is an India/INR store on Shopify's trial. The custom **Printlet Studio** theme is uploaded as an **unpublished draft**; the public store is still password protected. The paper and vinyl products are **drafts**. This is intentional: the physical sticker count and vinyl waterproof claim still need testing, and checkout needs shipping, payment, and dispatch details. Rahul is not GST registered; the India market currently says **Not collecting** tax. The support email is `rahulm2053@gmail.com`.
 
-Dawn represents a HTML-first, JavaScript-only-as-needed approach to theme development. It's Shopify's first source available theme with performance, flexibility, and [Online Store 2.0 features](https://www.shopify.com/partners/blog/shopify-online-store) built-in and acts as a reference for building Shopify themes.
+Theme editor: <https://admin.shopify.com/store/printlet-in/themes/192843776364/editor>
+Preview: <https://printlet-in.myshopify.com?preview_theme_id=192843776364> (merchant access/password may be required)
+Products: <https://admin.shopify.com/store/printlet-in/products>
+Domain: <https://admin.shopify.com/store/printlet-in/settings/domains/182257287532>
 
-* **Web-native in its purest form:** Themes run on the [evergreen web](https://www.w3.org/2001/tag/doc/evergreen-web/). We leverage the latest web browsers to their fullest, while maintaining support for the older ones through progressive enhancement—not polyfills.
-* **Lean, fast, and reliable:** Functionality and design defaults to “no” until it meets this requirement. Code ships on quality. Themes must be built with purpose. They shouldn’t support each and every feature in Shopify.
-* **Server-rendered:** HTML must be rendered by Shopify servers using Liquid. Business logic and platform primitives such as translations and money formatting don’t belong on the client. Async and on-demand rendering of parts of the page is OK, but we do it sparingly as a progressive enhancement.
-* **Functional, not pixel-perfect:** The Web doesn’t require each page to be rendered pixel-perfect by each browser engine. Using semantic markup, progressive enhancement, and clever design, we ensure that themes remain functional regardless of the browser.
+The current design uses three generated photographic examples in `assets/printlet-hero-photo.jpg`, `assets/printlet-paper-photo.jpg`, and `assets/printlet-vinyl-photo.jpg`. They are illustrative mockups; sticker counts and finish are confirmed only by physical samples. Local admin screenshots in `docs/` are excluded from the public repository.
 
-You can find a more detailed version of our theme code principles in the [contribution guide](https://github.com/Shopify/dawn/blob/main/.github/CONTRIBUTING.md#theme-code-principles).
+The supplied `printlet.` wordmark is in the theme without the phone numbers. `printlet.in` has been added to Shopify and is shown as the **primary domain**. At GoDaddy, the `@` A record is `23.227.38.65` and `www` CNAME is `shops.myshopify.com`. Shopify confirms that DNS points to Shopify, is live in all regions, and has a TLS certificate. Keep the storefront password in place during setup.
 
-## Getting started
-We recommend using Dawn as a starting point for theme development. [Learn more on Shopify.dev](https://shopify.dev/themes/getting-started/create).
+## What was built
 
-> If you're building a theme for the Shopify Theme Store, then you can use Dawn as a starting point. However, the theme that you submit needs to be [substantively different from Dawn](https://shopify.dev/themes/store/requirements#uniqueness) so that it provides added value for merchants. Learn about the [ways that you can use Dawn](https://shopify.dev/themes/tools/dawn#ways-to-use-dawn).
+- A mobile-first home page with a white editorial layout, light typewriter-style typography, square text-only actions, photo parallax and scroll reveals, two product choices, a three-step explanation, and clear upload paths. Three generated example photos show a dog, a friend, and a cat repeated on sticker sheets. These are concept mockups, not photos of Printlet's finished products.
+- A dedicated Shop stickers page at `/collections/all`, with the two sheet options and direct links to the product forms. The main menu now points to Home, Shop stickers, Contact, and How it works.
+- Mobile and desktop product pages with shape/size selection, a live per-sheet planning count, file upload, sheet quantity, and vinyl finish selection. One item is one A4 sheet. The customer supplies **one design per sheet**. Shipping is separate.
+- Draft products: **Custom Paper Sticker Sheet, ₹80**, and **Custom Waterproof Vinyl Sticker Sheet, ₹120**. No stock tracking, as these are made to order.
+- Designed Contact and How it works/FAQ pages, a simple main menu, cart, and Shopify policy links.
+- An app-block-compatible product section. Once Preview App's theme app extension is installed and tested, add its app block in the product template. Then enable **Theme settings → Printlet production → Use Preview App instead of basic upload form**. Keep the native form until the app supports every required option and stores artwork on orders.
 
-Please note that the main branch may include code for features not yet released. The "stable" version of Dawn is available in the theme store.
+### Sticker count logic
 
-## Staying up to date with Dawn changes
+The live grid uses a provisional **190 × 277 mm safe area** inside one A4 sheet and **5 mm between sticker bounding boxes**. It chooses the better of unrotated and 90° rotated grids. Each printed A3 must contain **two independent A4 layouts**, so cutting it in half preserves the displayed count on each sold sheet. The calculator is in `assets/printlet-customizer.js`. Current planning counts are:
 
-Say you're building a new theme off Dawn but you still want to be able to pull in the latest changes, you can add a remote `upstream` pointing to this Dawn repository.
+| Shape | Size | Count per A4 |
+| --- | --- | ---: |
+| Circle or square | 25 mm | 54 |
+| Circle or square | 50 mm | 15 |
+| Circle or square | 75 mm | 6 |
+| Rectangle or oval | 50 × 25 mm | 30 |
+| Rectangle or oval | 75 × 50 mm | 10 |
+| Rectangle or oval | 100 × 75 mm | 4 |
 
-1. Navigate to your local theme folder.
-2. Verify the list of remotes and validate that you have both an `origin` and `upstream`:
+These are **planning estimates**, not verified minimums. They use each shape's bounding box. A print shop may need more space, especially for kiss cutting. Keep products draft until a sample confirms the count for every option. Only then enable **Theme settings → Printlet production → Counts physically verified**. If any count fails, reduce the safe area or increase the gap in the JavaScript, retest, and upload the revised theme first.
+
+The artwork input is a native Shopify product-form file line-item property (`Artwork`), with the selected shape, size, finish, and count as other line-item properties. The browser accepts images and PDFs and limits files to 20 MB. A real cart/order upload test is still required; theme-editor preview alone does not prove that Shopify retains the file through checkout. Test on iPhone and Android with photos from the phone, plus a PDF if you want to accept PDFs.
+
+## Before taking the first order
+
+1. **Test manufacturing.** Ask Mega Digital for one A3 test print per material, shape, size, and vinyl finish. Ensure each A3 contains two separate A4 layouts. Check margins, kiss-cut accuracy, exact peelable count *on each A4 half*, finish, colors, and production cost. Test the vinyl's waterproof claim on the finished laminated sticker. Confirm whether the stated 24-hour printing turnaround holds for your real orders. Update product wording and counts based on results.
+2. **Choose packaging and a courier.** Measure a protected A4 parcel, its weight, and the cost to ship it to sample Indian PIN codes. Rahul will manage the courier and shipping rates. In **Markets → India → Shipping**, replace Shopify's current default **₹379 Standard** rate with your actual customer-facing rate(s). The current rate is much higher than either sheet price and should not be used at launch. Set the origin/location from the actual dispatch address. Confirm that a five-day delivery estimate is realistic for the PIN codes you serve; narrow the service area or revise the wording if needed.
+3. **Complete business and money settings.** In **Settings → General**, set the dispatch address: the physical place you will pack and hand parcels to the courier. It can be a home address if that is where you work; decide what address should appear on labels and documents. The support email is already `rahulm2053@gmail.com`. In **Settings → Payments**, choose and verify a provider that accepts your desired Indian payment methods, including UPI if offered. Rahul reports that he is not GST registered; no GSTIN has been entered, and India currently shows **Not collecting**. Confirm the business's obligations with a qualified local adviser before launch. A paid Shopify plan may be required to remove the password and take real payments; Rahul must complete any plan purchase or payment-provider contract himself.
+4. **Complete policies.** Set the accurate contact information, shipping policy, privacy policy, terms, and a custom-product cancellation/return policy under **Settings → Policies**. Check any generated text against how Printlet will actually operate. Do not publish promises about refunds, waterproofing, or delivery that have not been confirmed.
+5. **Test a complete order.** Once manufacturing, shipping, payments, and policies are ready, activate the two products temporarily for testing. From a real phone, upload a photo, pick each shape/size/finish, add multiple A4 sheets, and check cart line-item properties and artwork link. At checkout confirm product subtotal, separate shipping charge, address/PIN behavior, tax display, and payment. Check the order in admin: artwork must open, and all options/count/quantity must be readable for fulfillment. Repeat with both products. If a test order is paid, refund/cancel it according to the chosen provider's process.
+6. **Launch.** Verify `printlet.in` is connected with TLS and remains primary in **Settings → Domains**. Publish **Printlet Studio**, activate both products, remove the storefront password, then recheck homepage, product pages, cart, and checkout on phone and desktop. Do these after the full test order and physical count checks pass.
+
+## Editing and fulfilling
+
+**Edit copy and layout:** Open the theme editor link above. The Home page has a **Printlet home** section. Product links are selected there. For code changes, edit this directory and upload to the chosen theme ID with:
+
 ```sh
-git remote -v
-```
-3. If you don't see an `upstream`, you can add one that points to Shopify's Dawn repository:
-```sh
-git remote add upstream https://github.com/Shopify/dawn.git
-```
-4. Pull in the latest Dawn changes into your repository:
-```sh
-git fetch upstream
-git pull upstream main
+shopify theme check --fail-level error
+shopify theme push --store printlet-in.myshopify.com --theme 192843776364 --nodelete
 ```
 
-## Developer tools
+Avoid using `--unpublished` for updates: it creates another draft theme. A previous draft theme (`192843612524`) remains as a backup. The current deliverable is `192843776364`.
 
-There are a number of really useful tools that the Shopify Themes team uses during development. Dawn is already set up to work with these tools.
+**Fulfil an order:** Open **Orders** in Shopify. Read the artwork file and the shape, size, finish, count, and A4 sheet quantity from the line item. Check the image has enough resolution and usable edges; contact the customer before printing if it does not. Prepare one repeated-design layout per ordered A4 sheet, with two independent A4 layouts per A3 Mega print. Ask Mega to print and kiss-cut. Cut each A3 into A4 halves, count/check the finished stickers, protect sheets from bending and moisture, buy the courier label, add tracking, and mark fulfilled. Keep the five-day estimate under review.
 
-### Shopify CLI
+## Verification done so far
 
-[Shopify CLI](https://github.com/Shopify/shopify-cli) helps you build Shopify themes faster and is used to automate and enhance your local development workflow. It comes bundled with a suite of commands for developing Shopify themes—everything from working with themes on a Shopify store (e.g. creating, publishing, deleting themes) or launching a development server for local theme development.
+- `shopify theme check --fail-level error`: passed, with warnings from Dawn and the custom templates.
+- Theme JSON parsed and custom JavaScript passed `node --check`.
+- Shopify theme editor visually checked on desktop and mobile. Mobile product options switched correctly from circle/25 mm/54 to rectangle/50 × 25 mm/30.
+- Both draft products and the India-only active market were checked in Shopify admin.
+- GoDaddy DNS changes saved successfully. Shopify confirms the records point to it globally and TLS is provisioned.
 
-You can follow this [quick start guide for theme developers](https://shopify.dev/docs/themes/tools/cli) to get started.
-
-### Theme Check
-
-We recommend using [Theme Check](https://github.com/shopify/theme-check) as a way to validate and lint your Shopify themes.
-
-We've added Theme Check to Dawn's [list of VS Code extensions](/.vscode/extensions.json) so if you're using Visual Studio Code as your code editor of choice, you'll be prompted to install the [Theme Check VS Code](https://marketplace.visualstudio.com/items?itemName=Shopify.theme-check-vscode) extension upon opening VS Code after you've forked and cloned Dawn.
-
-You can also run it from a terminal with the following Shopify CLI command:
-
-```bash
-shopify theme check
-```
-
-### Continuous Integration
-
-Dawn uses [GitHub Actions](https://github.com/features/actions) to maintain the quality of the theme. [This is a starting point](https://github.com/Shopify/dawn/blob/main/.github/workflows/ci.yml) and what we suggest to use in order to ensure you're building better themes. Feel free to build off of it!
-
-#### Shopify/lighthouse-ci-action
-
-We love fast websites! Which is why we created [Shopify/lighthouse-ci-action](https://github.com/Shopify/lighthouse-ci-action). This runs a series of [Google Lighthouse](https://developers.google.com/web/tools/lighthouse) audits for the home, product and collections pages on a store to ensure code that gets added doesn't degrade storefront performance over time.
-
-#### Shopify/theme-check-action
-
-Dawn runs [Theme Check](#Theme-Check) on every commit via [Shopify/theme-check-action](https://github.com/Shopify/theme-check-action).
-
-## Contributing
-
-Want to make commerce better for everyone by contributing to Dawn? We'd love your help! Please read our [contributing guide](https://github.com/Shopify/dawn/blob/main/.github/CONTRIBUTING.md) to learn about our development process, how to propose bug fixes and improvements, and how to build for Dawn.
-
-## Code of conduct
-
-All developers who wish to contribute through code or issues, please first read our [Code of Conduct](https://github.com/Shopify/dawn/blob/main/.github/CODE_OF_CONDUCT.md).
-
-## Theme Store submission
-
-The [Shopify Theme Store](https://themes.shopify.com/) is the place where Shopify merchants find the themes that they'll use to showcase and support their business. As a theme partner, you can create themes for the Shopify Theme Store and reach an international audience of an ever-growing number of entrepreneurs.
-
-Ensure that you follow the list of [theme store requirements](https://shopify.dev/themes/store/requirements) if you're interested in becoming a [Shopify Theme Partner](https://themes.shopify.com/services/themes/guidelines) and building themes for the Shopify platform.
-
-## License
-
-Copyright (c) 2021-present Shopify Inc. See [LICENSE](/LICENSE.md) for further details.
+The cart/upload/checkout test and physical samples remain launch gates.

@@ -1,0 +1,57 @@
+{% liquid
+  assign is_vinyl = false
+  if product.handle contains 'vinyl'
+    assign is_vinyl = true
+  endif
+%}
+<script src="{{ 'printlet-customizer.js' | asset_url }}" defer></script>
+<div id="printlet-customize" class="pl-customizer" data-printlet-customizer data-verified="{{ settings.printlet_counts_verified }}" {{ block.shopify_attributes }}>
+  <p class="pl-customizer__eyebrow">Make it yours / one A4 sheet</p>
+  <h2>Let's make stickers.</h2>
+  <p class="pl-customizer__intro">Upload one image. Mega Digital lays out repeats on an A3 print, kiss-cuts them, and we send you one A4 half-sheet for each sheet ordered.</p>
+  {% unless settings.printlet_use_preview_app %}
+    {% form 'product', product, id: product_form_id, class: 'pl-customizer__form', enctype: 'multipart/form-data' %}
+      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+      <fieldset class="pl-fieldset">
+        <legend>1. Pick a shape</legend>
+        <div class="pl-options">
+          <label class="pl-option"><input type="radio" name="properties[Shape]" value="Circle" data-shape="circle" checked><span>● Circle</span></label>
+          <label class="pl-option"><input type="radio" name="properties[Shape]" value="Square" data-shape="square"><span>■ Square</span></label>
+          <label class="pl-option"><input type="radio" name="properties[Shape]" value="Rectangle" data-shape="rectangle"><span>▰ Rectangle</span></label>
+          <label class="pl-option"><input type="radio" name="properties[Shape]" value="Oval" data-shape="oval"><span>⬭ Oval</span></label>
+        </div>
+      </fieldset>
+      <fieldset class="pl-fieldset">
+        <legend>2. Pick a sticker size</legend>
+        <div class="pl-options" data-size-group="equal">
+          <label class="pl-option"><input type="radio" name="properties[Sticker size]" value="25 mm" data-width="25" data-height="25" checked><span>25 mm</span></label>
+          <label class="pl-option"><input type="radio" name="properties[Sticker size]" value="50 mm" data-width="50" data-height="50"><span>50 mm</span></label>
+          <label class="pl-option"><input type="radio" name="properties[Sticker size]" value="75 mm" data-width="75" data-height="75"><span>75 mm</span></label>
+        </div>
+        <div class="pl-options" data-size-group="wide" hidden>
+          <label class="pl-option"><input type="radio" name="properties[Sticker size]" value="50 × 25 mm" data-width="50" data-height="25" disabled><span>50 × 25 mm</span></label>
+          <label class="pl-option"><input type="radio" name="properties[Sticker size]" value="75 × 50 mm" data-width="75" data-height="50" disabled><span>75 × 50 mm</span></label>
+          <label class="pl-option"><input type="radio" name="properties[Sticker size]" value="100 × 75 mm" data-width="100" data-height="75" disabled><span>100 × 75 mm</span></label>
+        </div>
+      </fieldset>
+      {% if is_vinyl %}
+        <fieldset class="pl-fieldset">
+          <legend>3. Choose a finish</legend>
+          <div class="pl-options">
+            <label class="pl-option"><input type="radio" name="properties[Finish]" value="Matte" checked><span>Matte</span></label>
+            <label class="pl-option"><input type="radio" name="properties[Finish]" value="Glossy"><span>Glossy</span></label>
+          </div>
+        </fieldset>
+      {% endif %}
+      <div class="pl-count" aria-live="polite"><strong data-sticker-count>54</strong><span data-count-caption>{% if settings.printlet_counts_verified %}minimum peelable stickers on each A4 sheet{% else %}planning estimate per A4 sheet; final minimum pending print test{% endif %}</span></div>
+      <input type="hidden" name="properties[Sticker count per sheet]" value="Planning estimate: 54" data-count-property>
+      <label class="pl-upload-label" for="PrintletArtwork-{{ product.id }}">{% if is_vinyl %}4{% else %}3{% endif %}. Upload your image</label>
+      <div class="pl-upload"><input id="PrintletArtwork-{{ product.id }}" type="file" name="properties[Artwork]" accept="image/*,.pdf" required data-artwork><p>Choose a photo or file from your phone. PNG, JPG, HEIC, WebP or PDF; up to 20 MB. One design per sheet.</p><img class="pl-upload__preview" width="100" height="100" alt="Your selected artwork preview" data-artwork-preview></div>
+      <div class="pl-qty"><label for="PrintletQuantity-{{ product.id }}">A4 sheets</label><input id="PrintletQuantity-{{ product.id }}" type="number" name="quantity" min="1" max="50" step="1" value="1" required></div>
+      <button type="submit" class="product-form__submit button button--full-width button--primary" {% unless product.available %}disabled{% endunless %}>{% if product.available %}Add A4 sheet — {{ product.price | money }}{% else %}Coming soon{% endif %}</button>
+      <p class="pl-customizer__small">Shipping is extra at checkout. Estimated delivery is 5 days and depends on your PIN code. We review artwork before printing.</p>
+    {% endform %}
+  {% else %}
+    <p class="pl-customizer__intro">Use the Printlet Preview App below to upload and arrange your artwork.</p>
+  {% endunless %}
+</div>

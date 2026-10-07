@@ -10,3 +10,7 @@ Thumbs.db
 .shopify
 node_modules
 *.zip
+
+# Local review images and superseded generated mockups
+docs/*.png
+assets/printlet-*-sheet.png

@@ -1,0 +1,16 @@
+<div class="pl-shop">
+  <div class="pl-shop__hero">
+    <div><p class="pl-eyebrow">The Printlet shop / just the good stuff</p><h1>Small shop.<br>Big sticker energy.</h1><p>Upload one image, pick your finish and shape, and get a full A4 sheet with your design on repeat.</p><a href="#shop-options">Find your sheet</a></div>
+    <img src="{{ 'printlet-hero-photo.jpg' | asset_url }}" width="1536" height="1024" alt="Example custom sticker sheet with one photo repeated" fetchpriority="high">
+  </div>
+  <div class="pl-shop__compare" id="shop-options"><p class="pl-eyebrow">Two ways to stick</p><h2>Choose your<br>kind of sticky.</h2><p>Each quantity is one A4 sheet. Shipping is added at checkout.</p></div>
+  <div class="pl-shop__grid">
+    <article class="pl-shop__card pl-shop__card--paper"><div class="pl-shop__card-image"><img src="{{ 'printlet-paper-photo.jpg' | asset_url }}" width="1122" height="1402" loading="lazy" alt="Paper sheet with the same friend photo repeated as stickers"></div><div class="pl-shop__card-copy"><p class="pl-eyebrow">01 / the everyday one</p><h3>Custom paper<br>stickers.</h3><p>For journals, party favors, packaging, and dry-use projects.</p><div><strong>₹80 <small>/ A4 sheet</small></strong><a href="/products/custom-paper-sticker-sheet">Make paper stickers</a></div></div></article>
+    <article class="pl-shop__card pl-shop__card--vinyl"><div class="pl-shop__card-image"><img src="{{ 'printlet-vinyl-photo.jpg' | asset_url }}" width="1122" height="1402" loading="lazy" alt="Vinyl sheet with the same cat photo repeated as stickers"></div><div class="pl-shop__card-copy"><p class="pl-eyebrow">02 / the adventurous one</p><h3>Custom waterproof<br>vinyl.</h3><p>Matte or glossy lamination for projects that need more durability. Waterproof performance is pending sample testing.</p><div><strong>₹120 <small>/ A4 sheet</small></strong><a href="/products/custom-waterproof-vinyl-sticker-sheet">Make vinyl stickers</a></div></div></article>
+  </div>
+  <div class="pl-shop__note"><p>Your sticker count depends on size. See the live planning count on each product page; final minimums await physical print tests.</p><a href="/pages/how-it-works">How it works</a></div>
+</div>
+
+{% schema %}
+{"name":"Printlet shop","tag":"section","class":"section-printlet-shop","settings":[],"presets":[{"name":"Printlet shop"}]}
+{% endschema %}

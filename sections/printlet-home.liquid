@@ -1,0 +1,54 @@
+<script src="{{ 'printlet-home.js' | asset_url }}" defer></script>
+<div class="pl-home pl-editorial">
+  <section class="pl-e-hero" aria-labelledby="pl-hero-title">
+    <div class="pl-e-hero__copy">
+      <p class="pl-eyebrow">Printlet · made from your memories</p>
+      <h1 id="pl-hero-title">Your favourite photo<br><span>deserves to get out more.</span></h1>
+      <p>That face you never stop taking photos of. That weekend you still talk about. That little idea you drew on your phone. Turn one image into a whole sheet of stickers, made for real life.</p>
+      <a class="pl-button pl-button--dark" href="#make-yours">Upload your image</a>
+    </div>
+    <div class="pl-e-hero__scene" aria-label="A photograph of a dog becoming a sheet of custom stickers">
+      <figure class="pl-e-photo pl-e-photo--hero"><img src="{{ 'printlet-hero-photo.jpg' | asset_url }}" width="1536" height="1024" alt="A golden retriever photo on a phone, repeated on a sticker sheet and placed into a journal" fetchpriority="high"><figcaption>one photo, a hundred little places to put it.</figcaption></figure>
+      <span class="pl-e-ink pl-e-ink--one" aria-hidden="true"></span><span class="pl-e-ink pl-e-ink--two" aria-hidden="true"></span>
+    </div>
+    <a class="pl-e-next" href="#the-idea"><span>See what happens next</span><i aria-hidden="true"></i></a>
+  </section>
+  <section class="pl-e-story" id="the-idea" aria-labelledby="pl-story-title">
+    <div class="pl-e-story__line" aria-hidden="true"></div>
+    <p class="pl-eyebrow pl-e-reveal">From camera roll to real life</p>
+    <h2 id="pl-story-title" class="pl-e-reveal">Some things are too good<br>to live only on a screen.</h2>
+    <div class="pl-e-story__gallery">
+      <figure class="pl-e-photo pl-e-photo--story pl-e-photo--story-one pl-e-reveal" data-pl-depth="1.2"><img src="{{ 'printlet-paper-photo.jpg' | asset_url }}" width="1122" height="1402" loading="lazy" alt="A personal photo printed as repeated paper stickers beside a journal"><figcaption>your people, in your pages</figcaption></figure>
+      <p class="pl-e-story__aside pl-e-reveal">Your favourite person on a notebook. Your pet on your bottle. Your little business on every package. It starts with one image.</p>
+      <figure class="pl-e-photo pl-e-photo--story pl-e-photo--story-two pl-e-reveal" data-pl-depth=".8"><img src="{{ 'printlet-vinyl-photo.jpg' | asset_url }}" width="1122" height="1402" loading="lazy" alt="A cat photo repeated on a vinyl sticker sheet beside a reusable bottle"><figcaption>your everyday, a little more you</figcaption></figure>
+    </div>
+  </section>
+  <section class="pl-e-choice" id="make-yours" aria-labelledby="pl-products-title">
+    <div class="pl-e-choice__head pl-e-reveal"><p class="pl-eyebrow">The two ways to make it yours</p><h2 id="pl-products-title">Pick the sheet.<br>We'll do the repeating.</h2><p>Every order starts with one image and ends with an A4 sheet of your design. Choose where you want it to stick.</p></div>
+    <div class="pl-e-choice__grid">
+      <article class="pl-e-choice__item pl-e-reveal">
+        <a class="pl-e-choice__image" href="{{ section.settings.paper_product.url | default: '/products/custom-paper-sticker-sheet' }}" aria-label="Shop custom paper stickers"><img src="{{ 'printlet-paper-photo.jpg' | asset_url }}" width="1122" height="1402" loading="lazy" alt="Paper photo stickers arranged on an A4 sheet beside a journal"></a>
+        <div class="pl-e-choice__details"><span>01 / for little keepsakes</span><h3>Paper stickers</h3><p>For journals, parcels, party favours and the places that stay dry.</p><span>₹80 / A4 sheet</span><a class="pl-button pl-button--outline" href="{{ section.settings.paper_product.url | default: '/products/custom-paper-sticker-sheet' }}">Make paper stickers</a></div>
+      </article>
+      <article class="pl-e-choice__item pl-e-reveal">
+        <a class="pl-e-choice__image" href="{{ section.settings.vinyl_product.url | default: '/products/custom-waterproof-vinyl-sticker-sheet' }}" aria-label="Shop custom vinyl stickers"><img src="{{ 'printlet-vinyl-photo.jpg' | asset_url }}" width="1122" height="1402" loading="lazy" alt="Laminated vinyl cat photo stickers on an A4 sheet beside a bottle"></a>
+        <div class="pl-e-choice__details"><span>02 / for wherever you go</span><h3>Vinyl stickers</h3><p>Matte or glossy lamination for bottles, laptops and more everyday places.</p><span>₹120 / A4 sheet</span><a class="pl-button pl-button--outline" href="{{ section.settings.vinyl_product.url | default: '/products/custom-waterproof-vinyl-sticker-sheet' }}">Make vinyl stickers</a></div>
+      </article>
+    </div>
+    <p class="pl-e-choice__note">Shipping is added at checkout. Estimated delivery is 5 days, depending on your PIN code.</p>
+  </section>
+  <section class="pl-e-process" id="how-it-works" aria-labelledby="pl-how-title">
+    <p class="pl-eyebrow pl-e-reveal">A tiny bit of magic, three simple steps</p>
+    <h2 id="pl-how-title" class="pl-e-reveal">Made by you.<br>Printed by us.</h2>
+    <div class="pl-e-process__steps"><div class="pl-e-process__rule" aria-hidden="true"></div>
+      <article class="pl-e-reveal"><span>01</span><h3>Upload what you love.</h3><p>Choose a photo, drawing or logo from your phone.</p></article>
+      <article class="pl-e-reveal"><span>02</span><h3>Give it a shape.</h3><p>Pick a size, shape and material. See a planning count for your sheet.</p></article>
+      <article class="pl-e-reveal"><span>03</span><h3>Peel. Stick. Repeat.</h3><p>We print and kiss-cut the repeats so they are ready for your world.</p></article>
+    </div>
+    <a class="pl-text-link" href="/pages/how-it-works">A little more about how it works</a>
+  </section>
+  <section class="pl-e-finale" aria-labelledby="pl-finale-title"><div class="pl-e-ink pl-e-ink--three" aria-hidden="true"></div><p class="pl-eyebrow pl-e-reveal">Ready when you are</p><h2 id="pl-finale-title" class="pl-e-reveal">Make a little space<br>for your favourite things.</h2><a class="pl-button pl-button--dark" href="#make-yours">Make your stickers</a></section>
+</div>
+{% schema %}
+{"name":"Printlet home","tag":"section","class":"section-printlet-home","settings":[{"type":"product","id":"paper_product","label":"Paper sticker product"},{"type":"product","id":"vinyl_product","label":"Vinyl sticker product"}],"presets":[{"name":"Printlet home"}]}
+{% endschema %}

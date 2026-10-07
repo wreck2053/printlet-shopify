@@ -1,0 +1,5 @@
+{% if product.handle contains 'vinyl' %}
+  <div class="pl-product-visual pl-product-visual--vinyl pl-product-visual--detail"><img src="{{ 'printlet-vinyl-photo.jpg' | asset_url }}" width="1122" height="1402" alt="Example waterproof vinyl sticker sheet showing one cat photo repeated"></div>
+{% else %}
+  <div class="pl-product-visual pl-product-visual--paper pl-product-visual--detail"><img src="{{ 'printlet-paper-photo.jpg' | asset_url }}" width="1122" height="1402" alt="Example paper sticker sheet showing one friend photograph repeated"></div>
+{% endif %}

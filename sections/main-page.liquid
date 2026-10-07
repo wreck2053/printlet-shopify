@@ -14,14 +14,30 @@
   }
 {%- endstyle -%}
 
-<div class="page-width page-width--narrow section-{{ section.id }}-padding">
-  <h1 class="main-page-title page-title h0{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-    {{ page.title | escape }}
-  </h1>
-  <div class="rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-    {{ page.content }}
+{% if page.handle == 'how-it-works' %}
+  <div class="pl-info-page">
+    <header class="pl-info-hero"><div><p class="pl-eyebrow">The Printlet playbook / easy as 1, 2, 3</p><h1>From photo<br>to phenomenal.</h1><p>Pick the image you love. We turn it into a whole A4 sheet of stickers, ready to peel and put everywhere.</p><a class="pl-button pl-button--dark" href="{{ routes.all_products_collection_url }}">Make your stickers</a></div><img src="{{ 'printlet-hero-photo.jpg' | asset_url }}" width="1536" height="1024" alt="Example custom sticker sheet repeating golden retriever photo" fetchpriority="high"></header>
+    <section class="pl-info-steps" aria-labelledby="pl-info-steps-title"><p class="pl-eyebrow">Three little steps</p><h2 id="pl-info-steps-title">Your image. Your way.</h2><div class="pl-info-steps__grid">
+      <article><span>01 / upload it</span><img src="{{ 'printlet-hero-photo.jpg' | asset_url }}" width="1536" height="1024" loading="lazy" alt="A repeated photo on an A4 sticker sheet"><h3>Start with a photo.</h3><p>Upload one clear original image from your phone or computer. A photo, drawing or logo is welcome.</p></article>
+      <article><span>02 / shape it</span><img src="{{ 'printlet-paper-photo.jpg' | asset_url }}" width="1122" height="1402" loading="lazy" alt="A dog photo repeated in circular stickers"><h3>Choose the details.</h3><p>Pick paper or laminated vinyl, a shape and a size. For vinyl, choose matte or glossy.</p></article>
+      <article><span>03 / stick it</span><img src="{{ 'printlet-vinyl-photo.jpg' | asset_url }}" width="1122" height="1402" loading="lazy" alt="A portrait repeated on a vinyl sticker sheet"><h3>Peel and enjoy.</h3><p>We review your artwork, arrange repeats, and kiss-cut each sticker. Each quantity is one A4 sheet.</p></article>
+    </div></section>
+    <section class="pl-info-faq" aria-labelledby="pl-info-faq-title"><div><p class="pl-eyebrow">A few good answers</p><h2 id="pl-info-faq-title">The little<br>details.</h2></div><div>
+      <details><summary>How many stickers fit on a sheet?<span aria-hidden="true">+</span></summary><p>The product page shows a planning count for your chosen shape and size. We will confirm guaranteed minimums through physical print and cut tests before sales open.</p></details>
+      <details><summary>Can I use more than one image?<span aria-hidden="true">+</span></summary><p>For now, each sheet repeats one uploaded design. A more flexible design flow is planned for Preview App.</p></details>
+      <details><summary>What size sheet will I receive?<span aria-hidden="true">+</span></summary><p>Each quantity is one A4 sheet. Mega Digital prints two separate A4 layouts on A3 and kiss-cuts the stickers; we divide the print into A4 sheets.</p></details>
+      <details><summary>What if my image is too small?<span aria-hidden="true">+</span></summary><p>We review the artwork before printing and contact you if it may not print clearly. Use the highest quality original file you have.</p></details>
+      <details><summary>How long does delivery take?<span aria-hidden="true">+</span></summary><p>Allow an estimated five days, depending on courier availability for your PIN code. Shipping is charged separately at checkout.</p></details>
+    </div></section>
   </div>
-</div>
+{% elsif page.handle == 'contact' %}
+  <div class="pl-contact-hero"><div><p class="pl-eyebrow">Say hello / we're all ears</p><h1>Got a<br>sticky question?</h1><p>Artwork, sticker counts, or an order on your mind? Send us a note below, or email <a href="mailto:rahulm2053@gmail.com">rahulm2053@gmail.com</a>.</p><span>Made in Chennai · shipped across India</span></div><img src="{{ 'printlet-paper-photo.jpg' | asset_url }}" width="1122" height="1402" alt="Example paper sheet with the same friend photo repeated" fetchpriority="high"></div>
+{% else %}
+  <div class="page-width page-width--narrow section-{{ section.id }}-padding">
+    <h1 class="main-page-title page-title h0">{{ page.title | escape }}</h1>
+    <div class="rte">{{ page.content }}</div>
+  </div>
+{% endif %}
 
 {% schema %}
 {

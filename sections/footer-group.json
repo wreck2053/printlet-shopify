@@ -4,17 +4,32 @@
   "sections": {
     "footer": {
       "type": "footer",
-      "blocks": {},
-      "block_order": [],
+      "blocks": {
+        "printlet_note": {
+          "type": "text",
+          "settings": {
+            "heading": "Made to stick.",
+            "subtext": "<p>One image. A whole sheet of stickers. Printed in Chennai and delivered across India.</p><p>Questions? Email <a href=\"mailto:rahulm2053@gmail.com\">rahulm2053@gmail.com</a></p>"
+          }
+        },
+        "printlet_links": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Explore Printlet",
+            "menu": "main-menu"
+          }
+        }
+      },
+      "block_order": ["printlet_note", "printlet_links"],
       "settings": {
         "color_scheme": "scheme-1",
-        "newsletter_enable": true,
-        "newsletter_heading": "Subscribe to our emails",
-        "enable_follow_on_shop": true,
-        "show_social": true,
-        "enable_country_selector": true,
-        "enable_language_selector": true,
-        "payment_enable": true,
+        "newsletter_enable": false,
+        "newsletter_heading": "",
+        "enable_follow_on_shop": false,
+        "show_social": false,
+        "enable_country_selector": false,
+        "enable_language_selector": false,
+        "payment_enable": false,
         "show_policy": true,
         "margin_top": 0,
         "padding_top": 36,

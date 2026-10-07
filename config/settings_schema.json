@@ -1466,5 +1466,22 @@
         "label": "t:settings_schema.customer_accounts.settings.customer_account_menu.label"
       }
     ]
+  },
+  {
+    "name": "Printlet production",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "printlet_counts_verified",
+        "label": "Physical print tests confirm the minimum sticker counts",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "printlet_use_preview_app",
+        "label": "Use Preview App instead of the basic artwork form",
+        "default": false
+      }
+    ]
   }
 ]
