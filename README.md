@@ -2,7 +2,7 @@
 
 ## Current state (7 October 2026)
 
-The merchant store is **Printlet** under Rahul's Shopify account, at `printlet-in.myshopify.com`. It is an India/INR store on Shopify's trial. The custom **Printlet Studio** theme is uploaded as an **unpublished draft**; the public store is still password protected. The paper and vinyl products are **drafts**. This is intentional: the physical sticker count and vinyl waterproof claim still need testing, and checkout needs shipping, payment, and dispatch details. Rahul is not GST registered; the India market currently says **Not collecting** tax. The support email is `rahulm2053@gmail.com`.
+The merchant store is **Printlet** under Rahul's Shopify account, at `printlet-in.myshopify.com`. It is an India/INR store on Shopify's trial. The custom **Printlet Studio** theme is **live on `printlet.in`**, and the store remains password protected. The paper and vinyl products are **drafts**. This is intentional: the physical sticker count and vinyl waterproof claim still need testing, and checkout needs shipping, payment, and dispatch details. Rahul is not GST registered; the India market currently says **Not collecting** tax. The support email is `rahulm2053@gmail.com`.
 
 Theme editor: <https://admin.shopify.com/store/printlet-in/themes/192843776364/editor>
 Preview: <https://printlet-in.myshopify.com?preview_theme_id=192843776364> (merchant access/password may be required)
@@ -46,7 +46,7 @@ The artwork input is a native Shopify product-form file line-item property (`Art
 3. **Complete business and money settings.** In **Settings → General**, set the dispatch address: the physical place you will pack and hand parcels to the courier. It can be a home address if that is where you work; decide what address should appear on labels and documents. The support email is already `rahulm2053@gmail.com`. In **Settings → Payments**, choose and verify a provider that accepts your desired Indian payment methods, including UPI if offered. Rahul reports that he is not GST registered; no GSTIN has been entered, and India currently shows **Not collecting**. Confirm the business's obligations with a qualified local adviser before launch. A paid Shopify plan may be required to remove the password and take real payments; Rahul must complete any plan purchase or payment-provider contract himself.
 4. **Complete policies.** Set the accurate contact information, shipping policy, privacy policy, terms, and a custom-product cancellation/return policy under **Settings → Policies**. Check any generated text against how Printlet will actually operate. Do not publish promises about refunds, waterproofing, or delivery that have not been confirmed.
 5. **Test a complete order.** Once manufacturing, shipping, payments, and policies are ready, activate the two products temporarily for testing. From a real phone, upload a photo, pick each shape/size/finish, add multiple A4 sheets, and check cart line-item properties and artwork link. At checkout confirm product subtotal, separate shipping charge, address/PIN behavior, tax display, and payment. Check the order in admin: artwork must open, and all options/count/quantity must be readable for fulfillment. Repeat with both products. If a test order is paid, refund/cancel it according to the chosen provider's process.
-6. **Launch.** Verify `printlet.in` is connected with TLS and remains primary in **Settings → Domains**. Publish **Printlet Studio**, activate both products, remove the storefront password, then recheck homepage, product pages, cart, and checkout on phone and desktop. Do these after the full test order and physical count checks pass.
+6. **Launch.** Verify `printlet.in` is connected with TLS and remains primary in **Settings → Domains**. **Printlet Studio is already the live theme behind the password.** Activate both products and remove the storefront password only after the full test order and physical count checks pass. Then recheck homepage, product pages, cart, and checkout on phone and desktop.
 
 ## Editing and fulfilling
 
@@ -70,3 +70,5 @@ Avoid using `--unpublished` for updates: it creates another draft theme. A previ
 - GoDaddy DNS changes saved successfully. Shopify confirms the records point to it globally and TLS is provisioned.
 
 The cart/upload/checkout test and physical samples remain launch gates.
+
+The live theme was switched from Horizon to Printlet Studio on 7 October 2026. The storefront password remains enabled so Rahul can review the site at `printlet.in` without making the store publicly accessible.
